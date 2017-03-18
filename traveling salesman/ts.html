@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id="myCanvas" width="12000" height="9000" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function(){
+  if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+	//get points from the text file
+    var input = xmlhttp.responseText;
+	var c = '\n';
+	var i=j=0;
+	var lines = new Array();
+	
+	while ((j = input.indexOf(c,i)) !== -1){
+		lines.push(input.substring(i,j));
+		i=j+1;
+	}
+	
+
+	
+	var rx = new RegExp(/[-+]?\d*\.\d+|\d+/, "g");
+	var points = new Array();
+	for(i = 0; i < lines.length; i++){
+		point = new Array();
+		
+		while((match = rx.exec(lines[i])) !== null){
+			point.push(parseFloat(match));
+		}
+		points.push(point)
+	}
+	
+	
+	
+	//write points to the canvas
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	for(i = 0; i < points.length; i++){
+
+		ctx.beginPath();
+		ctx.moveTo(Math.abs(points[i][0]), Math.abs(points[i][1]));
+		
+		ctx.fillStyle = "#FF0000";
+		ctx.arc(Math.abs(points[i][0]), Math.abs(points[i][1]), 10, 0, Math.PI * 2, true);
+		ctx.fill(); 
+		ctx.fillStyle = "#000000";
+		
+		ctx.lineTo(Math.abs(points[(i+1)%points.length][0]), Math.abs(points[(i+1)%points.length][1]));
+		ctx.stroke();
+	}
+  }
+};
+
+xmlhttp.open("GET","hamiltonian_cycle.txt",true);
+
+xmlhttp.send();
+
+
+
+</script>
+</body>
+</html>
