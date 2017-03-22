@@ -1,6 +1,6 @@
 import math
 import operator
-import xgcd
+import extended_euclidean_algorithm
 #will need our old sieve de eratoshenes algorithm, which we will use to find our squares
 from sieve_de_eratosthenes import sieve_de_eratosthenes
 from quadratic_gaussian_elimination import quadratic_gaussian_elimination
