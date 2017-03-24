@@ -6,9 +6,11 @@ The Design & Analysis of algorithms
 by Anthony Levitin
 '''
 
+
+
 def simplex_method(matrix,relations):
 
-    answer = [0]*len(matrix[0])
+    answer = [0.0]*len(matrix[0])
     
     #add slack variables
     for i,rel in enumerate(relations):
@@ -16,9 +18,9 @@ def simplex_method(matrix,relations):
             col = [0]*(len(matrix))
             
             if rel == '<=':
-                col[i] = 1
+                col[i] = 1.0
             if rel == '>=':
-                col[i] = -1
+                col[i] = -1.0
 
             for x,c in enumerate(col):
                 matrix[x].insert(len(matrix[x]) - 1,c)
@@ -27,18 +29,7 @@ def simplex_method(matrix,relations):
     matrix_height = len(matrix)
     
     
-    negative_entries = True
-
-    while negative_entries:
-        negative_entries = False
-        for i in matrix[matrix_height - 1]:
-            if i < 0:
-                negative_entries = True
-                break
-    
-    
-        
-        
+    while 1:    
         #find pivot column. will be first negative value in last row.     
         pivot_col = -1
 
@@ -47,23 +38,42 @@ def simplex_method(matrix,relations):
             #selects largest column for blands rule
             if matrix[matrix_height-1][i] < 0:
                 pivot_col = i
+                break
                 
                 
         if pivot_col < 0:
-            answer[len(answer) -1] = matrix[matrix_height- 1][matrix_width-1]
+            #get the answers from the matrix
+            #for each column
+            for x in xrange(len(answer) - 1):
+                answer_column = True
+                num_ones = 0
+                row_number = 0
+                #for each row
+                for i ,row in enumerate(matrix[:matrix_height-1]):
+                    if row[x] == 1:
+                        num_ones += 1
+                        row_number = i
+                    elif row[x] != 0:
+                        answer_column = False
+                if num_ones == 1 and answer_column:
+                    answer[x] = matrix[row_number][matrix_width - 1]
+            
+            #set value of z
+            answer[len(answer) - 1] = matrix[matrix_height-1][matrix_width-1]
             return answer
         
         else:
             min_ratio = 0 
             pivot_row = 0
-            no_positive = True
+            negative_column = True
+            #functions like a do while loop
             first = True
             
             #move down the two columns, the pivot column and the value column
             for x,y,z in zip(matrix[:matrix_height- 1],matrix[:matrix_height-1],xrange(matrix_height-1)):
                 
                 if x[pivot_col] > 0:
-                    no_positive = False
+                    negative_column = False
                     
                     #selects smallest row for blands rule
                     if y[matrix_width - 1]/x[pivot_col] < min_ratio or first:
@@ -72,7 +82,7 @@ def simplex_method(matrix,relations):
                         pivot_row = z
                         first = False
             
-            if no_positive == True:
+            if negative_column == True:
                 return 'unbounded'
 
             print matrix[pivot_row]
@@ -83,20 +93,16 @@ def simplex_method(matrix,relations):
 
             #subtract the pivot row from each of the other rows
             for i in xrange(matrix_height):
+                multiplier = matrix[i][pivot_col]
                 for x in xrange(matrix_width):
                     if i != pivot_row:
-                        matrix[i][x] -= matrix[pivot_row][x]*matrix[i][pivot_col]
+                        matrix[i][x] -= matrix[pivot_row][x]*multiplier
                         
-                        print 'pivot c' + str(pivot_col) + str(i)
-                        print matrix[i][pivot_col]
-                        print matrix
-            
-            answer[pivot_col] = matrix[pivot_row][matrix_width - 1]
-            
-    answer[len(answer)-1] = matrix[matrix_height -1][matrix_width - 1]
-    return answer
+           
+                
+    
 
-print simplex_method([[1.0,1.0,4.0], [1.0,3.0,6.0], [-3.0,-5.0,0.0]],['<=','<='])      
+print simplex_method([[2.0,1.0,18.0], [2.0,3.0,42.0],[3.0,1.0,24.0], [-3.0,-2.0,0.0]],['<=','<=','<='])      
         
 
     
