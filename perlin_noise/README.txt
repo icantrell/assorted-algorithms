@@ -1,0 +1,1 @@
+This is perlin noise algorithm that works in hyperdimensions. I have not completed the octave section or done a good proof of its validity but the algorithm is functional.
