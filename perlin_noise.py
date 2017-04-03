@@ -9,7 +9,7 @@ def interpolate(x0,x1,w):
 def get_gradient(coord):
     gradient = []
     for i in xrange(len(coord)):
-        random.seed(i*int(coord[i]))
+        random.seed((i+1)*int(coord[i]))
         gradient.append(random.random())
         #use srand for each dimension
         #so that (rand(n),rand(n),...) never occurs.
@@ -65,3 +65,5 @@ def perlin(coord):
     return interpolated_values[0]
     
 print perlin((4.21,8.01))
+print perlin((5.21,8.01))
+print perlin((4.21,9.01))
