@@ -79,7 +79,7 @@ ys =[]
     
 for i in xrange(100):
     xs.append(i/50.0)
-    ys.append(perlin((i/50.0)))
+    ys.append(perlin([i/50.0]))
 
 plt.plot(xs,ys)
 plt.show()
