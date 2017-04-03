@@ -1,5 +1,6 @@
 import random
 import math
+import matplotlib.pyplot as plt
 
 #interpolate between x0 and x1
 def interpolate(x0,x1,w):
@@ -9,7 +10,7 @@ def interpolate(x0,x1,w):
 def get_gradient(coord):
     gradient = []
     for i in xrange(len(coord)):
-        random.seed(i*int(coord[i]))
+        random.seed((i+1)*int(coord[i]))
         gradient.append(random.random())
         #use srand for each dimension
         #so that (rand(n),rand(n),...) never occurs.
@@ -63,5 +64,13 @@ def perlin(coord):
             interpolated_values[i] = interpolate(interpolated_values[i], interpolated_values[i + 2**(dim-1)], interpolate_vec[dim-1])
             
     return interpolated_values[0]
+
+xs =[]
+ys =[]
     
-print perlin((4.21,8.01))
+for i in xrange(100):
+    xs.append(i/50.0)
+    ys.append(perlin((i/50.0)))
+
+plt.plot(xs,ys)
+plt.show()
