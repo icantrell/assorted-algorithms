@@ -78,17 +78,16 @@ def simplex_method(matrix,relations):
                     #selects smallest row for blands rule
                     if y[matrix_width - 1]/x[pivot_col] < min_ratio or first:
                         min_ratio = y[matrix_width - 1]/x[pivot_col]
-                        print y[matrix_width - 1]/x[pivot_col]
                         pivot_row = z
                         first = False
             
             if negative_column == True:
                 return 'unbounded'
 
-            print matrix[pivot_row]
+           
             #divide each by entry in the row by the selected entry
             matrix[pivot_row] = [i/matrix[pivot_row][pivot_col] for i in matrix[pivot_row]]
-            print matrix[pivot_row]
+            
                 
 
             #subtract the pivot row from each of the other rows
@@ -101,14 +100,13 @@ def simplex_method(matrix,relations):
            
                 
     
-
-print simplex_method([[2.0,1.0,18.0], [2.0,3.0,42.0],[3.0,1.0,24.0], [-3.0,-2.0,0.0]],['<=','<=','<='])      
-        
-
-    
-            
-            
-            
-        
+#problem from pdf
+answer= simplex_method([[3.0,2.0,66.0],
+                        [2.0,4.0,180.0],
+                      [2.0,10.0,200.0],
+                      [-90.0,-75.0,0.0]],['<=','<=','<=']) 
+print "chairs: " + str(answer[0])
+print "sofas: " + str(answer[1])
+print "profit: " + str(answer[2])
             
             
