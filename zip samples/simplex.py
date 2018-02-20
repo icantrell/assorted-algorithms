@@ -1,10 +1,5 @@
 #input nxm matrix with n-1 vector
 #Use bland's rule to resolve cycling
-'''
-understood from
-The Design & Analysis of algorithms
-by Anthony Levitin
-'''
 
 
 
@@ -21,8 +16,6 @@ def simplex_method(matrix,relations):
                 col[i] = 1.0
             if rel == '>=':
                 col[i] = -1.0
-            
-        
 
             for x,c in enumerate(col):
                 matrix[x].insert(len(matrix[x]) - 1,c)
@@ -101,50 +94,14 @@ def simplex_method(matrix,relations):
                         
            
                 
-'''    
+    
 #problem from pdf
 answer= simplex_method([[3.0,2.0,66.0],
                         [2.0,4.0,180.0],
                       [2.0,10.0,200.0],
                       [-90.0,-75.0,0.0]],['<=','<=','<=']) 
-print "chairs: " + str(answer[0])
-print "sofas: " + str(answer[1])
-print "profit: " + str(answer[2])
-'''
-
-#max flow problem that this simplex method example is solving (https://www.geeksforgeeks.org/wp-content/uploads/ford_fulkerson2.png)
-#this algorithm works well when there are multiple commodities flowing down the graph.
-#usually of different wieght and value.
-#this graph only uses one commodity.
-answer = simplex_method([
-    [1.0,0.0,1.0,-1.0,0.0,0.0,0.0,0.0,  0.0],
-    [0.0,1.0,-1.0,0.0,-1.0,0.0,0.0,0.0,  0.0],
-    [0.0,0.0,0.0,1.0,0.0,1.0,-1.0,0.0,  0.0],
-    [0.0,0.0,0.0,0.0,1.0,-1.0,0.0,-1.0,  0.0],
-    [-1.0,-1.0,0.0,0.0,0.0,0.0,1.0,1.0,  0.0],
-                        
-    [1.0,0.0,1.0,-1.0,0.0,0.0,0.0,0.0,  0.0],
-    [0.0,1.0,-1.0,0.0,-1.0,0.0,0.0,0.0,  0.0],
-    [0.0,0.0,0.0,1.0,0.0,1.0,-1.0,0.0,  0.0],
-    [0.0,0.0,0.0,0.0,1.0,-1.0,0.0,-1.0,  0.0],
-    [-1.0,-1.0,0.0,0.0,0.0,0.0,1.0,1.0,  0.0], 
-                            
-    [1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,  11.0],
-    [0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,  12.0],
-    [0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,  1.0],
-    [0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,  12.0],
-    [0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,  11.0],
-    [0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,  7.0],
-    [0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,  19.0],
-    [0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,  4.0],                            
-                        
-    [-1.0,-1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]],['<=','<=','<=','<=','<=','>=','>=','>=','>=','>=','<=','<=','<=','<=','<=','<=','<=','<='])
-print(answer)
+print( "chairs: " + str(answer[0]))
+print ("sofas: " + str(answer[1]))
+print("profit: " + str(answer[2]))
             
-'''
-== -> <=,>=
->= -> -1*
-missing x>=0 -> x= z-y replace x with z-y where z>=0 and y>=0
-
-'''
             
