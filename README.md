@@ -1,4 +1,4 @@
-# assorted-algorithms
+ # assorted-algorithms
 # assorted-algorithms
 
 In this folder is a list of projects and algorithms I have been working on, since 2016, 
