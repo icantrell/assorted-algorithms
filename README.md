@@ -9,6 +9,6 @@ other half are algorithms that I learned from sources such as wikipedia.
 The start and end dates of each project are in the readme files.
      
    
- 
+   
   
   
