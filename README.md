@@ -1,4 +1,4 @@
-   # assorted-algorithms
+# assorted-algorithms
 # assorted-algorithms
 
 In this folder is a list of projects and algorithms I have been working on, since 2016, 
@@ -10,7 +10,7 @@ The start and end dates of each project are in the readme files.
      
    
    
-  
-       
-    
+     
+        
+    .!.?
   
