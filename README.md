@@ -6,6 +6,8 @@ some the projects are not finished and are labeled so in the readme files.
 About half of the algorithms are made completely from my own inspiration and the
 other half are algorithms that I learned from sources such as wikipedia.
 
+Some also have their own more fully developed repos including Baum-Welch algorithm, which is now in Natural-Language-Processing.
+
 The start and end dates of each project are in the readme files.
      
    
